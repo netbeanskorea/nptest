@@ -1,0 +1,22 @@
+kind: Deployment
+metadata:
+  name: hello-deployment
+  labels:
+    app: hello
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+      - name: hello
+        image: eucluster.icp:8500/default/hello
+        ports:
+        - containerPort: 80
+      nodeSelector:
+        zone: "app-network"

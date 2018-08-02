@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: policy
+metadata:
+  name: hello-internaltraffic
+spec:
+  egress:
+  - action: allow
+    destination: {}
+    source: {}
+  ingress:
+  - action: allow
+    source:
+     selector: run == 'myubuntu9a'
+    destination: {}
+  order: 400
+  selector: calico/k8s_ns == 'default' && app == 'hello'
